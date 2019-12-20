@@ -5,6 +5,9 @@
  */
 package parking;
 
+import NUMERO.Numero;
+import java.io.IOException;
+
 /**
  *
  * @author dam
@@ -41,7 +44,7 @@ public class Parking {
      * @return posicion donde se encuentra el primer valorigual a libre,-1 en caso de contrario
      */
     public int busquedaSecuencial(){
-        int plaza=0;
+        int plaza;
         boolean encontrado;
         int nplaza=0;
         encontrado=false;
@@ -56,7 +59,7 @@ public class Parking {
         if(!encontrado){
             nplaza=-1;
         }
-        return plaza;
+        return nplaza;
     }
     public void entrada(){
         int nplaza;
@@ -67,6 +70,21 @@ public class Parking {
         else{
             plazas[nplaza]="Ocupado";
             System.out.println("La plaza asignada es:"+nplaza);
+            
+        }
+    }
+    public void salida() throws IOException{
+        int nplaza;
+        Numero n=new Numero();
+        nplaza=n.pedirNumero("Plaza a dejar libre",0,plazas.length);
+        if(plazas[nplaza].equalsIgnoreCase("Ocupado"))
+        {
+            System.out.println("Plaza liberada");
+            plazas[nplaza]="Libre";
+          
+        }
+        else{
+            System.out.println("La plaza ya estaba libre");
         }
     }
 }
